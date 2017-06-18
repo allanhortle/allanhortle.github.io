@@ -1,0 +1,34 @@
+@import '~bruce/bruce';
+
+.Spoon {
+    text-align: center;
+}
+
+.Spoon_heading {
+    font-size: 2rem;
+
+    @include bruce-breakpoint(40rem) {
+        font-size: 3rem;
+    }
+}
+
+.Spoon_input {
+    background-color: grey(90);
+    border: none;
+    font: inherit;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding: 3rem 0;
+    width: 100%;
+    text-align: center;
+    color: inherit;
+
+    &:focus {
+        outline: none;
+    }
+
+     @include bruce-breakpoint(40rem) {
+        font-size: 3rem;
+        padding: 5rem 0;
+    }
+}
