@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.scss';
 
 class DecimalTime extends React.Component {
     constructor(props) {

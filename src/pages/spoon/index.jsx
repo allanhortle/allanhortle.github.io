@@ -1,6 +1,5 @@
 import React from 'react';
 import {List, Map} from 'immutable';
-import './styles.scss';
 
 const regexA = new RegExp('^(.+?)([aeiouAEIOU].*)');
 const regexB = new RegExp('^(sh|st|pr|fr|.)(.*)');

@@ -8,8 +8,7 @@
     "common-tags": "^1.4.0",
     "gatsby": "next",
     "gatsby-link": "next",
-    "gatsby-plugin-postcss-sass": "^1.0.0-alpha15-alpha.17ca92e9",
-    "gatsby-plugin-sass": "^0.1.2",
+    "gatsby-plugin-postcss-sass": "next",
     "obtuse": "^0.3.3",
     "stampy": "^0.30.0"
   }
