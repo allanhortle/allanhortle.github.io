@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "deploy": "gatsby build && s3_website push"
+  },
   "dependencies": {
     "bruce": "^0.12.1",
     "common-tags": "^1.4.0",
-    "gatsby": "next",
-    "gatsby-link": "next",
-    "gatsby-plugin-postcss-sass": "next",
+    "gatsby": "^1.9.201",
+    "gatsby-link": "^1.6.37",
+    "gatsby-plugin-postcss-sass": "^1.0.17",
     "obtuse": "^0.3.3",
     "stampy": "^0.30.0"
   }
