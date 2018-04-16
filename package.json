@@ -7,12 +7,17 @@
     "deploy": "gatsby build && s3_website push"
   },
   "dependencies": {
-    "bruce": "^0.12.1",
+    "bruce": "^5.0.0",
     "common-tags": "^1.4.0",
-    "gatsby": "^1.9.201",
-    "gatsby-link": "^1.6.37",
-    "gatsby-plugin-postcss-sass": "^1.0.17",
-    "obtuse": "^0.3.3",
-    "stampy": "^0.30.0"
+    "gatsby": "^1.9.250",
+    "gatsby-link": "^1.6.40",
+    "gatsby-plugin-postcss-sass": "^1.0.19",
+    "gatsby-remark-prismjs": "^1.2.24",
+    "gatsby-source-filesystem": "^1.5.32",
+    "gatsby-transformer-remark": "^1.7.40",
+    "goose-css": "^0.12.0",
+    "obtuse": "^0.7.3",
+    "stampy": "^0.37.4",
+    "unmutable": "^0.26.0"
   }
 }

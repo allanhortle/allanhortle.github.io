@@ -7,7 +7,7 @@
 .Spoon_heading {
     font-size: 2rem;
 
-    @include bruce-breakpoint(40rem) {
+    @include BruceBreakpoint(40rem) {
         font-size: 3rem;
     }
 }
@@ -27,7 +27,7 @@
         outline: none;
     }
 
-     @include bruce-breakpoint(40rem) {
+     @include BruceBreakpoint(40rem) {
         font-size: 3rem;
         padding: 5rem 0;
     }
