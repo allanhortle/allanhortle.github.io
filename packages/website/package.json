@@ -1,0 +1,17 @@
+{
+  "name": "allanhortle.com",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Allan Hortle",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "gatsby build",
+    "watch": "gatsby develop"
+  },
+  "dependencies": {
+    "@allanhortle/spoon": "0.0.0",
+    "gatsby": "^2.13.20",
+    "react-goose": "^0.6.2"
+  }
+}

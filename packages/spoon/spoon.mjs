@@ -1,5 +1,4 @@
 import React from 'react';
-import {List, Map} from 'immutable';
 
 const regexA = new RegExp('^(.+?)([aeiouAEIOU].*)');
 const regexB = new RegExp('^(sh|st|pr|fr|.)(.*)');
@@ -17,7 +16,7 @@ class Spoon extends React.Component {
     }
     onChange(ee) {
         var {value} = ee.target;
-        var words = List(value.split(' ')).filter(ii => ii);
+        var words = value.split(' ').filter(ii => ii);
         this.setState({
             spoon: words
                 .map((ww, key, iterable) => {
@@ -26,19 +25,17 @@ class Spoon extends React.Component {
                     return {start, end};
                 })
                 .map((ww, key, iterable) => {
-                    var next = iterable.get(key + 1, iterable.get(0));
+                    var next = iterable[key + 1] || iterable[0];
                     return next.start + ww.end;
                 })
         });
-
-
-
-
     }
     render() {
         return <div className="Spoon">
-            <input ref="input" className="Spoon_input" type="text" onChange={this.onChange}/>
-            <h1 className="Spoon_heading">{this.state.spoon.join(' ')}</h1>
+            <h1 className="Spoon_heading">Spoon</h1>
+            <input ref="input" className="Input" type="text" onChange={this.onChange}/>
+            <div className="Text Text-center">↓</div>
+            <div className="Text Text-center">{this.state.spoon.join(' ')}</div>
         </div>;
     }
 }

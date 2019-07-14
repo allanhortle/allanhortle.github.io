@@ -1,0 +1,159 @@
+---
+title: The Identity Monad - Composing Functions in Order
+draft: false
+date: 2018-04-24
+---
+
+Pure functions are the best. They are clear, easy to test and easy to debug. But once you have more than a handful, composing them together becomes cumbersome and hard to read. 
+
+```js
+// ugly hock exports in react
+export default withState(withRouter(MyComponent))
+
+// contrived but confusingly backwards maths
+(x) => add10(divideByNine(multiplyByFour(x)))
+
+// bizzare double barrel functions
+multiply(2)(x)
+```
+
+## Enter the Monad. 
+Identity is the simplest monad. It has no fancy logic and is a good place to learn the core concept of a Monad. That is: monads are function composers.
+ 
+ A monad holds a value and then lets you pass it through functions as you please. While each type of monad has different underlying logic, the identity has no logic and just composes functions together in order. 
+ 
+ The above examples can be rewritten using the identity monad.
+ 
+```js
+// clearly ordered hock exports in react
+// holds MyCompoent and then passes it through withRouter then withState
+export default Identity(MyComponent)
+    .map(withRouter)
+    .map(withState)
+    .value();
+
+// contrived but logically forwards maths
+// holds x and passes it through multiply then divide then add 
+(x) => Identity(x)
+    .map(multiplyByFour)
+    .map(divideByFour)
+    .map(addTen)
+    .value();
+
+// No double barrels
+// Holds x the passes it through the partially applied multiply. 
+Identity(x)
+    .map(multiply(2))
+    .value();
+```
+ 
+While each example may have slightly more code, it is now clear how each function is excecuted in sequence. Similar to how a promise chain can minimise callback hell, monads minimise nested function madness. 
+
+## How does it work. 
+Counter to what you may have heard the best place to start with a monad is its map function.
+
+First let’s make a class that can store a value. 
+
+```js
+class Identity {
+    constructor(value) {
+        this.val = value;
+    }
+    value() {
+        return this.val;
+    }
+}
+
+// Factory for easy construction
+const Id = (val) => new Identity(val);
+```
+
+Now we can add a map method. This takes a function as it’s argument, passes `this.val`through it, and placed the result into a new monad.
+
+```js
+class Identity {
+    constructor(value) {
+        this.val = value;
+    }
+    value() {
+        return this.val;
+    }
++   map(fn) {
++       return new Identity(fn(this.val))
++   }
+}
+
+// Unit function for easy construction
+const Id = (val) => new Identity(val);
+```
+
+At the heart of the monad is a contract to always return a monad. With each call to `map` the monad updates the value via our function and places that inside another monad. So when given a monad we can continue to chain  `map` calls confident of their excecution. 
+
+_Side note: that’s one of the reasons people who love monads also love types. If you know for certain that a function will also return a monad. You know for certain you can always call map._
+
+
+## What about flatMap?
+You may have noticed a possible bug in our Identity. If `fn` returned an Identity monad we’d end up with a value in and identity in an identity. `Identity(Identity(value))`. Sometimes that might be exactly what you want, but if that’s not the case  monads have a `flatMap` function. flatMap as the name suggests is like map but it flattens two monads into one. Or put another way it ignores its own monad and accepts the monad that fn returns.
+
+```js
+class Identity {
+    constructor(value) {
+        this.val = value;
+    }
+    value() {
+        return this.val;
+    }
+    map(fn) {
+        return new Identity(fn(this.val));
+    }
++   flatMap(fn) {
++       return fn(this.val)
++   }
+}
+
+// Factory for easy construction
+const Id = (val) => new Identity(val);
+```
+
+Now if we restructure our pure functions to each return an Identity it doesn’t matter what order we call them in. 
+
+```js
+const addTen = (value) => Identity(value + 10);
+const divideByNine = (value) => Identity(value / 9);
+
+addTen(80)
+    .flatMap(divideByNine) // Identity(10)
+
+divideByNine(18)
+    .flatMap(addTen) // Identity(12)
+```
+
+## Who needs map?
+What’s interesting about flatMap is that in combination with the unit function we can recreate map. Even though we started with map in monad land flatMap and unit are the core functions and map is just useful sugar on top. 
+
+```js
+class Identity {
+    constructor(value) {
+        this.val = value;
+    }
+    value() {
+        return this.val;
+    }
+    map(fn) {
+        return this.flatMap((val) => Id(fn(val)))
+    }
++   flatMap(fn) {
++       return fn(this.val);
++   }
+}
+```
+
+This may seem like overkill on a simple monad like Identity. But as the logic inside flatMap gets more complicated it’s nice to only have it in one place. 
+
+
+## Ok. What’s next?
+The identity monad is great for composing functions in sequence but where monads shine is when they put logic in flatMap. Based on extra information stored on the monad you can choose whether or not to call the function given to flatMap. 
+
+
+Maybe has a null check
+Either has a Boolean check. 

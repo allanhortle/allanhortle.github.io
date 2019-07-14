@@ -1,0 +1,7 @@
+{
+  "name": "@allanhortle/spoon",
+  "version": "0.0.0",
+  "main": "spoon.mjs",
+  "license": "MIT",
+  "private": true
+}
