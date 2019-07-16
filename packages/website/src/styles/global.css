@@ -53,6 +53,7 @@ table {
 */
 
 :root {
+    --farbackground: #1e101d;
     --background: #2f1e2e;
     --foreground: #ddd;
     --blue: #06b6ef;
@@ -106,14 +107,64 @@ h2 {
     border-bottom: 1px solid;
 }
 
+h3 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid;
+}
+
 a {
     color: var(--blue);
     margin-right: .25rem;
 
 }
 
-a:visited {
+pre, code {
+    background-color: var(--farbackground);
     color: var(--purple);
+}
+
+pre {
+    margin: 1em 0;
+    padding: .6em;
+}
+
+ul {
+    margin: 1em 0;
+    padding-left: 1.8em;
+    position: relative;
+}
+ul li {
+}
+ul li:before {
+    content: '*';
+    position: absolute;
+    left: .6em;
+}
+
+ol {
+    list-style-type: decimal;
+    padding-left: 1.8em;
+    margin: 1em 0;
+}
+
+blockquote {
+    font-style: italic;
+    overflow: hidden;
+    position: relative;
+    padding-left: 1.2em;
+    margin: 1em 0;
+}
+blockquote:before {
+    content: '>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>';
+    position: absolute;
+    top: -.5em;
+    left: 0;
+    white-space: pre;
+}
+
+p {
+    margin: 1em 0;
 }
 
 
@@ -148,10 +199,14 @@ a:visited {
     text-align: center;
 }
 
+.Label {
+    color: #847283;
+    font-style: italic;
+}
+
 .Input {
-    background: transparent;
+    background: #1a0919;
     border: none;
-    border-bottom: 1px solid;
     color: var(--foreground);
     font-size: inherit;
     font-family: inherit;

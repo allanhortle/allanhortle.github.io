@@ -5,7 +5,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prep": "yarn && yarn lerna bootstrap"
+    "prep": "yarn && yarn lerna bootstrap",
+    "watch": "yarn lerna run watch --scope=website"
   },
   "devDependencies": {
     "lerna": "^3.15.0"

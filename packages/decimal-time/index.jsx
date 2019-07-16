@@ -4,7 +4,7 @@ class DecimalTime extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: ''
+            time: '00:00:00'
         };
         this.tick = this.tick.bind(this);
     }
@@ -41,7 +41,8 @@ class DecimalTime extends React.Component {
     }
     render() {
         return <div className="DecimalTime">
-            <h1>{this.state.time}</h1>
+            <h1>Decimal Time</h1>
+            <div className="Text Text-center">{this.state.time}</div>
         </div>;
     }
 }

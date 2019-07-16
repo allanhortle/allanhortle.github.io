@@ -2,8 +2,7 @@ import React from 'react';
 
 class Magnitude extends React.Component {
     render() {
-        return <div><pre className="Magnitude">{`
-  x10^...
+        return <div><h1>Magnitude</h1><pre>{`  x10^...
       -10 - The diameter of one hydrogen atom
        -4 - A pint in cubic meters
        -3 - Approximate volume of human blood

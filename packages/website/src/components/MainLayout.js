@@ -1,6 +1,6 @@
 import React, {Children} from "react";
 import Link from 'gatsby-link';
-import Text from 'react-goose/lib/Text';
+import Label from 'react-goose/lib/Label';
 import Box from 'react-goose/lib/position/Box';
 import Grid from 'react-goose/lib/position/Grid';
 import GridItem from 'react-goose/lib/position/GridItem';
@@ -15,7 +15,7 @@ export default function MainLayout(props) {
                     <ul className="List">
                         <li><Link to="/spoon">Spoon</Link></li>
                         <li><Link to="/decimal-time">Decimal Time</Link></li>
-                        <li><a href="/magnitude/">Magnitude</a></li>
+                        <li><Link to="/magnitude">Magnitude</Link></li>
                         <li><a href="https://bible.allanhortle.com">Bible Word Stats</a></li>
                         <li><a href="http://pricey-government.surge.sh/">Schedule</a></li>
                     </ul>
@@ -23,31 +23,36 @@ export default function MainLayout(props) {
                     <h2>Repos</h2>
                     <ul className="List">
                         <li>
-                            <a href="https://github.com/blueflag/enty">Enty</a>
-                            <Text modifier="muted">- Normalized state management</Text>
+                            <Link to="/repo/enty">Enty</Link>
+                            <Label>- Normalized state management</Label>
                         </li>
                         <li>
-                            <a href="https://github.com/blueflag/fronads">Fronads</a>
-                            <Text modifier="muted">- Monads with consistent and beginner-friendly naming conventions</Text>
+                            <Link to="/repo/fronads">Fronads</Link>
+                            <Label>- Monads with consistent and beginner-friendly naming conventions</Label>
+                        </li>
+                        <li>
+                            <Link to="/repo/oose">Oose</Link>
+                            <Label>- Normalized state management</Label>
                         </li>
                         <li>
                             <a href="https://github.com/allanhortle/spruce">Spruce</a>
-                            <Text modifier="muted">- CSS naming conventions that prioritize clarity & low specificity</Text>
+                            <Label>- CSS naming conventions that prioritize clarity & low specificity</Label>
                         </li>
                         <li>
                             <a href="https://github.com/allanhortle/goose">Goose</a>
-                            <Text modifier="muted">- UI spec built on Spruce</Text>
+                            <Label>- UI spec built on Spruce</Label>
 
                         </li>
                         <li>
                             <a href="https://github.com/allanhortle/bruce">Bruce</a>
-                            <Text modifier="muted">- Sass utility libray</Text>
+                            <Label>- Sass utility libray</Label>
                         </li>
                         <li>
                             <a href="https://github.com/allanhortle/centurion">Centurion</a>
-                            <Text modifier="muted">- Sublime Text theme</Text>
+                            <Label>- Sublime Text theme</Label>
                         </li>
                     </ul>
+                    <h2>Posts</h2>
                 </Box>
             </GridItem>
             <GridItem modifier="2">
