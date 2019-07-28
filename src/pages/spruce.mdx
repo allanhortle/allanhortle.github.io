@@ -1,0 +1,19 @@
+import MainLayout from '../components/MainLayout';
+import {graphql} from 'gatsby';
+
+
+<h1>Spruce</h1>
+<div dangerouslySetInnerHTML={{__html: props.data.readme.childMarkdownRemark.html}} />
+
+
+export const pageQuery = graphql`
+query {
+    readme(path:{eq:"/blueflag/oose/master/packages/oose-documentation/docs/spruce/spruce-naming.md"}) {
+        childMarkdownRemark {
+            html
+        }
+    }
+}
+`;
+
+export default MainLayout;
