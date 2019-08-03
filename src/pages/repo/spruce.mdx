@@ -1,17 +1,15 @@
-import MainLayout from '../components/MainLayout';
+import MainLayout from '../../components/MainLayout';
 import {graphql} from 'gatsby';
+import {MDXRenderer} from 'gatsby-plugin-mdx';
 
+# Spruce
 
-<h1>Spruce</h1>
-<div dangerouslySetInnerHTML={{__html: props.data.readme.childMarkdownRemark.html}} />
-
+<MDXRenderer>{props.data.readme.childMdx.body}</MDXRenderer>
 
 export const pageQuery = graphql`
 query {
     readme(path:{eq:"/blueflag/oose/master/packages/oose-documentation/docs/spruce/spruce-naming.md"}) {
-        childMarkdownRemark {
-            html
-        }
+        childMdx {body}
     }
 }
 `;

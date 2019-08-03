@@ -1,21 +1,30 @@
+// @flow
 import React from 'react';
+import MainLayout from '../components/MainLayout';
+import {Heading, Label, Text, Input} from '../components/Affordance';
+import {Box} from '../components/Layout';
 
 const regexA = new RegExp('^(.+?)([aeiouAEIOU].*)');
 const regexB = new RegExp('^(sh|st|pr|fr|.)(.*)');
 
-class Spoon extends React.Component {
-    constructor(props) {
+type Props = {};
+type State = {
+    spoon: [string, string],
+    input: string
+};
+
+class Spoon extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             spoon: ['Freven', 'Sty'],
             input: 'Steven Fry'
         };
-        this.onChange = this.onChange.bind(this);
     }
     componentDidMount(){
         this.refs.input.focus();
     }
-    onChange(ee) {
+    onChange = (ee) => {
         var {value} = ee.target;
         var words = value.split(' ').filter(ii => ii);
         this.setState({
@@ -33,14 +42,14 @@ class Spoon extends React.Component {
         });
     }
     render() {
-        return <div className="Spoon">
-            <h1 className="Spoon_heading">Spoon</h1>
-            <div className="Label">Input:</div>
-            <input ref="input" className="Input" type="text" onChange={this.onChange} value={this.state.input}/>
-            <div className="Text">{'\u00A0↓'}</div>
-            <div className="Label">Spoonerism:</div>
-            <div className="Text">{this.state.spoon.join(' ') || '\u00A0'}</div>
-        </div>;
+        return <MainLayout>
+            <Heading mb={3}>Spoon</Heading>
+            <Label>Input:</Label>
+            <Input ref="input" className="Input" type="text" onChange={this.onChange} value={this.state.input}/>
+            <Box>{'\u00A0↓'}</Box>
+            <Label>Spoonerism:</Label>
+            <Box>{this.state.spoon.join(' ') || '\u00A0'}</Box>
+        </MainLayout>;
     }
 }
 

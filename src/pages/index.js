@@ -1,7 +1,8 @@
+// @flow
 import React from 'react';
 import MainLayout from '../components/MainLayout';
 
-export default (props) => {
+export default () => {
     return <MainLayout />;
 };
 

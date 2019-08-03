@@ -1,8 +1,14 @@
+// @flow
 import React from 'react';
+import MainLayout from '../components/MainLayout';
+import {Heading} from '../components/Affordance';
 
-class Magnitude extends React.Component {
+export default class Magnitude extends React.Component<{}> {
     render() {
-        return <div><h1>Magnitude</h1><pre>{`  x10^...
+        return <MainLayout>
+            <Heading>Magnitude</Heading>
+            <pre>{`
+  x10^...
       -10 - The diameter of one hydrogen atom
        -4 - A pint in cubic meters
        -3 - Approximate volume of human blood
@@ -51,8 +57,7 @@ class Magnitude extends React.Component {
       113 - Physical size of the present universe in meters.
       120 - Shannon number (Number of possible games of chess)
       349 - 10 x 10 Rubik’s cubes combinations
-        `}</pre></div>;
+        `}</pre></MainLayout>;
     }
 }
 
-export default Magnitude;

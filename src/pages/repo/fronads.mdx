@@ -1,0 +1,17 @@
+import MainLayout from '../../components/MainLayout';
+import {graphql} from 'gatsby';
+import {MDXRenderer} from 'gatsby-plugin-mdx';
+
+<div>{console.log(MainLayout)}</div>
+
+<MDXRenderer>{props.data.readme.childMdx.body}</MDXRenderer>
+
+export const pageQuery = graphql`
+query {
+    readme(path:{eq:"/blueflag/fronads/master/README.md"}) {
+        childMdx {body}
+    }
+}
+`;
+
+//export default MainLayout;
