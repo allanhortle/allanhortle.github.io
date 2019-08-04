@@ -44,11 +44,13 @@ class Spoon extends React.Component<Props, State> {
     render() {
         return <MainLayout>
             <Heading mb={3}>Spoon</Heading>
-            <Label>Input:</Label>
-            <Input ref="input" className="Input" type="text" onChange={this.onChange} value={this.state.input}/>
-            <Box>{'\u00A0↓'}</Box>
-            <Label>Spoonerism:</Label>
-            <Box>{this.state.spoon.join(' ') || '\u00A0'}</Box>
+            <Box >
+                <Label>Input:</Label>
+                <Input ref="input" className="Input" type="text" onChange={this.onChange} value={this.state.input}/>
+                <Box>{'\u00A0↓'}</Box>
+                <Label>Spoonerism:</Label>
+                <Box>{this.state.spoon.join(' ') || '\u00A0'}</Box>
+            </Box>
         </MainLayout>;
     }
 }

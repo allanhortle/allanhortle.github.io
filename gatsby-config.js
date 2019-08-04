@@ -8,6 +8,13 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
+                name: `posts`,
+                path: `${__dirname}/src/pages/post`,
+            }
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
                 name: `pages`,
                 path: `${__dirname}/src/pages/`
             }
@@ -15,8 +22,18 @@ module.exports = {
         {
             resolve: `gatsby-plugin-mdx`,
             options: {
+                extensions: ['.mdx', '.md'],
+                gatsbyRemarkPlugins: [
+                    {
+                        resolve: `gatsby-remark-prismjs`,
+                        options: {
+                            noInlineHighlight: true
+                        }
+                    }
+                ],
                 defaultLayouts: {
-                    pages: require.resolve('./src/components/MainLayout')
+                    pages: require.resolve('./src/components/MainLayout'),
+                    posts: require.resolve('./src/components/PostLayout')
                 }
             }
         }

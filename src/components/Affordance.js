@@ -4,6 +4,8 @@ import styled, {createGlobalStyle} from 'styled-components';
 import {space, layout, textStyle, typography, compose} from 'styled-system';
 import GatsbyLink from 'gatsby-link';
 
+const color = (key) => (props) => props.theme.colors[key];
+
 
 export const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -71,11 +73,18 @@ export const List = styled.ul`
     padding-left: 1.8em;
     position: relative;
 `;
-export const ListItem= styled.li`
-    &:before {
-        content: '*';
-        position: absolute;
-        left: .6em;
+
+export const ListItem = styled.li`
+    ul > & {
+        &:before {
+            content: '*';
+            position: absolute;
+            left: .6em;
+        }
+    }
+
+    ol > & {
+        list-style-type: decimal;
     }
 `;
 
@@ -105,11 +114,24 @@ export const Input = styled.input`
     width: 100%;
 `;
 
+
+const syntax = (key, color) => (props) => `& .${key} {color: ${props.theme.colors[color]};}`;
 export const Code = styled.pre`
-   color: ${_ => _.theme.colors.purple};
+   color: ${_ => _.theme.colors.fg};
    background-color: ${_ => _.theme.colors.black};
    margin: 1em 0;
    padding: .6em;
+   overflow-x: auto;
+
+   ${syntax('comment', 'comment')}
+   ${syntax('keyword', 'red')}
+   ${syntax('string', 'green')}
+   ${syntax('number', 'blue')}
+   ${syntax('tag', 'yellow')}
+   ${syntax('script', 'fg')}
+
+   ${syntax('selector', 'yellow')}
+   ${syntax('property', 'red')}
 `;
 
 export const Quote = styled.blockquote`
@@ -117,12 +139,15 @@ export const Quote = styled.blockquote`
     overflow: hidden;
     position: relative;
     padding-left: 1.2em;
+    padding-top: 1.2em;
     margin: 1em 0;
+    color: ${color('purple')};
     &:before {
         content: '>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>\\A>';
         position: absolute;
         left: 0;
         white-space: pre;
+        top: -2px;
     }
 `;
 

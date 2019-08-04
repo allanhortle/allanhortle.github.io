@@ -9,12 +9,7 @@ export default class Magnitude extends React.Component<{}> {
             <Heading>Magnitude</Heading>
             <pre>{`
   x10^...
-      -10 - The diameter of one hydrogen atom
-       -4 - A pint in cubic meters
-       -3 - Approximate volume of human blood
-       -2 - Average volume of an adult human
-       -1
-        0
+        0 - You
         1 - Volume of a large domestic freezer
         2
         3
@@ -26,13 +21,13 @@ export default class Magnitude extends React.Component<{}> {
         9
        10
        11 - Stars in our galaxy
-       12
+       12 - Monopoly money in circulation
        13
        14
        15
        16 - All the ants in the world
        17
-       18 - Estimated storage size in bytes of Google, Amazon, Microsoft and Facebook.
+       18 - Storage size in bytes of Google, Amazon, Microsoft & Facebook.
        19 - Rubik’s cubes combinations
        20
        21

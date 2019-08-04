@@ -32,7 +32,6 @@ const textStyles = {
     h3: {
         color: colors.yellow
     },
-    p: {},
     em: {
         fontStyle: 'italic'
     },
