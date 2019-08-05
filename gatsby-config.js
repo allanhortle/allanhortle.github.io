@@ -2,14 +2,14 @@
 
 module.exports = {
     plugins: [
-        //`gatsby-plugin-styled-components`,
+        `gatsby-plugin-styled-components`,
         `gatsby-transformer-remark`,
         `gatsby-plugin-flow`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `posts`,
-                path: `${__dirname}/src/pages/post`,
+                path: `${__dirname}/src/pages/post`
             }
         },
         {
