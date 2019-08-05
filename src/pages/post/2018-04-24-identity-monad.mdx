@@ -4,13 +4,14 @@ draft: false
 date: 2018-04-24
 ---
 
-Pure functions are the best. They are clear, easy to test and easy to debug. But once you have more than a handful, composing them together becomes cumbersome and hard to read.
+
+Pure functions are great. They are clear, easy to test and easy to debug. But once you have more than a handful, composing them together becomes cumbersome and hard to read.
 
 ```js
-// ugly hock exports in react
+// ugly hoc exports in react
 export default withState(withRouter(MyComponent))
 
-// contrived but confusingly backwards maths
+// confusing backwards maths
 (x) => add10(divideByNine(multiplyByFour(x)))
 
 // bizzare double barrel functions
@@ -27,14 +28,14 @@ Identity is the simplest monad. It has no fancy logic and is a good place to lea
 ```js
 // clearly ordered hock exports in react
 // holds MyCompoent and then passes it through withRouter then withState
-export default Identity(MyComponent)
+export default new Identity(MyComponent)
     .map(withRouter)
     .map(withState)
     .value();
 
 // contrived but logically forwards maths
 // holds x and passes it through multiply then divide then add
-(x) => Identity(x)
+(x) => new Identity(x)
     .map(multiplyByFour)
     .map(divideByFour)
     .map(addTen)
@@ -42,7 +43,7 @@ export default Identity(MyComponent)
 
 // No double barrels
 // Holds x the passes it through the partially applied multiply.
-Identity(x)
+new Identity(x)
     .map(multiply(2))
     .value();
 ```
@@ -63,9 +64,6 @@ class Identity {
         return this.val;
     }
 }
-
-// Factory for easy construction
-const Id = (val) => new Identity(val);
 ```
 
 Now we can add a map method. This takes a function as it’s argument, passes `this.val` through it, and placed the result into a new monad.
@@ -78,13 +76,12 @@ class Identity {
     value() {
         return this.val;
     }
-+   map(fn) {
-+       return new Identity(fn(this.val))
-+   }
+    // highlight-start
+    map(fn) {
+        return new Identity(fn(this.val))
+    }
+    // highlight-end
 }
-
-// Unit function for easy construction
-const Id = (val) => new Identity(val);
 ```
 
 At the heart of the monad is a contract to always return a monad. With each call to `map` the monad updates the value via our function and places that inside another monad. So when given a monad we can continue to chain  `map` calls confident of their excecution.
@@ -106,9 +103,10 @@ class Identity {
     map(fn) {
         return new Identity(fn(this.val));
     }
-+   flatMap(fn) {
-+       return fn(this.val)
-+   }
+    // highlight-range{1-3}
+    flatMap(fn) {
+        return fn(this.val)
+    }
 }
 
 // Factory for easy construction
@@ -118,8 +116,8 @@ const Id = (val) => new Identity(val);
 Now if we restructure our pure functions to each return an Identity it doesn’t matter what order we call them in.
 
 ```js
-const addTen = (value) => Identity(value + 10);
-const divideByNine = (value) => Identity(value / 9);
+const addTen = (value) => new Identity(value + 10);
+const divideByNine = (value) => new Identity(value / 9);
 
 addTen(80)
     .flatMap(divideByNine) // Identity(10)
@@ -140,11 +138,12 @@ class Identity {
         return this.val;
     }
     map(fn) {
-        return this.flatMap((val) => Id(fn(val)))
+        // highlight-range{1}
+        return this.flatMap((val) => new Identity(fn(val)))
     }
-+   flatMap(fn) {
-+       return fn(this.val);
-+   }
+    flatMap(fn) {
+        return fn(this.val);
+    }
 }
 ```
 

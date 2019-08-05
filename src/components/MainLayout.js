@@ -52,7 +52,7 @@ export default function MainLayout(props: Props): Node {
         <MDXProvider components={mdxComponents}>
             <Flex display={['block', null, 'flex']} alignItems="start" pb={6}>
                 <GlobalStyle />
-                <Box width={[1, null, .6]} mr={[null, null, 3]} mb={3}>{children}</Box>
+                <Box width={[1, null, .6]} mr={[null, null, 3]} mb={3} flexShrink={0}>{children}</Box>
                 <Box width={[1, null, .4]}><Sidebar/></Box>
             </Flex>
         </MDXProvider>
@@ -60,14 +60,14 @@ export default function MainLayout(props: Props): Node {
 }
 
 function Sidebar(): Node {
+            //<ListItem><Link href="https://bible.allanhortle.com">Bible Word Stats</Link></ListItem>
+            //<ListItem><Link href="http://pricey-government.surge.sh/">Schedule</Link></ListItem>
     return <>
         <Heading mb={3}>Allan Hortle</Heading>
         <List>
             <ListItem><Link to="/spoon">Spoon</Link></ListItem>
             <ListItem><Link to="/decimal-time">Decimal Time</Link></ListItem>
             <ListItem><Link to="/magnitude">Magnitude</Link></ListItem>
-            <ListItem><Link href="https://bible.allanhortle.com">Bible Word Stats</Link></ListItem>
-            <ListItem><Link href="http://pricey-government.surge.sh/">Schedule</Link></ListItem>
         </List>
 
         <SubHeading my={3}>Repos</SubHeading>

@@ -132,6 +132,13 @@ export const Code = styled.pre`
 
    ${syntax('selector', 'yellow')}
    ${syntax('property', 'red')}
+
+   .gatsby-highlight-code-line {
+        display: block;
+        background-color: ${color('lineHighlight')};
+        margin: 0 -.6em;
+        padding: 0 .6em;
+   }
 `;
 
 export const Quote = styled.blockquote`

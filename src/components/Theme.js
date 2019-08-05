@@ -11,7 +11,8 @@ const colors = {
     orange: '#E1865A',
     white: '#e6e6e6',
     red: '#ef6155',
-    purple: '#815ba4'
+    purple: '#815ba4',
+    lineHighlight: 'rgb(30, 47, 39)'
 };
 
 const fonts = {
