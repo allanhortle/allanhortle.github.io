@@ -1,11 +1,11 @@
 // @flow
 import type {Node} from 'react';
 import {StaticQuery, graphql} from 'gatsby';
-import React from "react";
+import React, {useState} from "react";
 import {ThemeProvider} from 'styled-components';
 import {MDXProvider} from "@mdx-js/react"
-import Theme from './Theme';
-import {Box, Flex} from './Layout';
+import {DarkTheme, LightTheme} from './Theme';
+import {Box, Flex, Fixed} from './Layout';
 import {
     Table,
     TableHeadCell,
@@ -28,6 +28,7 @@ type Props = {
 
 export default function MainLayout(props: Props): Node {
     const {children} = props;
+    const [darkMode, setDarkMode] = useState(false);
     const mdxComponents = {
         a: Link,
         blockquote: Quote,
@@ -48,8 +49,11 @@ export default function MainLayout(props: Props): Node {
         ol: ({children}) => <List as="ol" my={3}>{children}</List>
     };
 
-    return <ThemeProvider theme={Theme}>
+    return <ThemeProvider theme={darkMode ? DarkTheme : LightTheme}>
         <MDXProvider components={mdxComponents}>
+            <Fixed top={1} left={1}>
+                <Text bg="bg" p={1} textStyle="href" onClick={() => setDarkMode(!darkMode)}>{darkMode ? 'dark' : 'light'}</Text>
+            </Fixed>
             <Flex display={['block', null, 'flex']} alignItems="start" pb={6}>
                 <GlobalStyle />
                 <Box width={[1, null, .6]} mr={[null, null, 3]} mb={3} flexShrink={0}>{children}</Box>
@@ -60,14 +64,12 @@ export default function MainLayout(props: Props): Node {
 }
 
 function Sidebar(): Node {
-            //<ListItem><Link href="https://bible.allanhortle.com">Bible Word Stats</Link></ListItem>
-            //<ListItem><Link href="http://pricey-government.surge.sh/">Schedule</Link></ListItem>
     return <>
         <Heading mb={3}>Allan Hortle</Heading>
         <List>
-            <ListItem><Link to="/spoon">Spoon</Link></ListItem>
-            <ListItem><Link to="/decimal-time">Decimal Time</Link></ListItem>
-            <ListItem><Link to="/magnitude">Magnitude</Link></ListItem>
+            <HeadingItem to="/spoon">Spoon</HeadingItem>
+            <HeadingItem to="/decimal-time">Decimal Time</HeadingItem>
+            <HeadingItem to="/magnitude">Magnitude</HeadingItem>
         </List>
 
         <SubHeading my={3}>Repos</SubHeading>
@@ -81,14 +83,14 @@ function Sidebar(): Node {
     </>;
 }
 
-function HeadingItem(props): Node {
+function HeadingItem(props: {to?: string, href?: string, label?: string, children: any}): Node {
     const {to, href, label, children} = props;
     return <ListItem>
         <Flex justifyContent="space-between">
             <Link to={to} href={href}>{children}</Link>
             <Label>{label}</Label>
         </Flex>
-    </ListItem>
+    </ListItem>;
 }
 
 function Posts(): Node {
@@ -116,7 +118,7 @@ function Posts(): Node {
                     const {frontmatter, fields} = node.childMdx;
                     return <HeadingItem to={fields.slug} label={frontmatter.date}>{frontmatter.title}</HeadingItem>;
                 })}
-            </List>
+            </List>;
         }}
     />;
 }

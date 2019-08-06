@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled, {createGlobalStyle} from 'styled-components';
-import {space, layout, textStyle, typography, compose} from 'styled-system';
+import {space, layout, textStyle, typography, color as colorSystem} from 'styled-system';
 import GatsbyLink from 'gatsby-link';
 
 const color = (key) => (props) => props.theme.colors[key];
@@ -158,7 +158,8 @@ export const Quote = styled.blockquote`
     }
 `;
 
-export const Text = styled('span')({}, compose(textStyle, typography, space));
+export const Text = styled.span({}, textStyle, typography, space, colorSystem);
+
 export const Heading = styled(Text)``;
 Heading.defaultProps = {
     as: 'h1',
