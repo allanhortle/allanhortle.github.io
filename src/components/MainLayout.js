@@ -1,12 +1,11 @@
 // @flow
 import type {Node} from 'react';
 import {StaticQuery, graphql} from 'gatsby';
-import React, {useState} from "react";
-import {ThemeProvider} from 'styled-components';
+import React from "react";
 import {MDXProvider} from "@mdx-js/react"
-import {DarkTheme, LightTheme} from './Theme';
 import {Box, Flex, Fixed} from './Layout';
 import {
+    Button,
     Table,
     TableHeadCell,
     GlobalStyle,
@@ -23,12 +22,12 @@ import {
 } from './Affordance';
 
 type Props = {
-    children: any
+    children: any,
+    darkMode: boolean,
+    setDarkMode: Function
 };
-
 export default function MainLayout(props: Props): Node {
-    const {children} = props;
-    const [darkMode, setDarkMode] = useState(false);
+    const {children, setDarkMode, darkMode} = props;
     const mdxComponents = {
         a: Link,
         blockquote: Quote,
@@ -49,18 +48,16 @@ export default function MainLayout(props: Props): Node {
         ol: ({children}) => <List as="ol" my={3}>{children}</List>
     };
 
-    return <ThemeProvider theme={darkMode ? DarkTheme : LightTheme}>
-        <MDXProvider components={mdxComponents}>
-            <Fixed top={1} left={1}>
-                <Text bg="bg" p={1} textStyle="href" onClick={() => setDarkMode(!darkMode)}>{darkMode ? 'dark' : 'light'}</Text>
-            </Fixed>
-            <Flex display={['block', null, 'flex']} alignItems="start" pb={6}>
-                <GlobalStyle />
-                <Box width={[1, null, .6]} mr={[null, null, 3]} mb={3} flexShrink={0}>{children}</Box>
-                <Box width={[1, null, .4]}><Sidebar/></Box>
-            </Flex>
-        </MDXProvider>
-    </ThemeProvider>;
+    return <MDXProvider components={mdxComponents}>
+        <Fixed top={2} left={2}>
+            <Button onClick={() => setDarkMode(!darkMode)}>{darkMode ? 'light' : 'dark'}</Button>
+        </Fixed>
+        <Flex display={['block', null, 'flex']} alignItems="start" pb={6}>
+            <GlobalStyle />
+            <Box width={[1, null, .6]} mr={[null, null, 3]} mb={3} flexShrink={0}>{children}</Box>
+            <Box width={[1, null, .4]}><Sidebar/></Box>
+        </Flex>
+    </MDXProvider>;
 }
 
 function Sidebar(): Node {
@@ -75,6 +72,7 @@ function Sidebar(): Node {
         <SubHeading my={3}>Repos</SubHeading>
         <List>
             <HeadingItem to="/repo/enty" label="Normalized state management">Enty</HeadingItem>
+            <HeadingItem to="/repo/covcov" label="A TUI for coverage reports">covcov</HeadingItem>
             <HeadingItem to="/repo/fronads" label="Monads with beginner-friendly naming">Fronads</HeadingItem>
             <HeadingItem to="/repo/moose" label="Front-end Methodology">Moose</HeadingItem>
         </List>
@@ -86,8 +84,10 @@ function Sidebar(): Node {
 function HeadingItem(props: {to?: string, href?: string, label?: string, children: any}): Node {
     const {to, href, label, children} = props;
     return <ListItem>
-        <Flex justifyContent="space-between">
-            <Link to={to} href={href}>{children}</Link>
+        <Flex flexDirection={['column', 'row']}>
+            <Box flexGrow="1">
+                <Link to={to} href={href}>{children}</Link>
+            </Box>
             <Label>{label}</Label>
         </Flex>
     </ListItem>;

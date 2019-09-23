@@ -1,12 +1,12 @@
 // @flow
 const {createFilePath} = require("gatsby-source-filesystem");
 const {get} = require('axios');
-const path = require('path');
 
 exports.sourceNodes = async ({actions, createNodeId, createContentDigest}) => {
     const repos = [
         ['blueflag/enty', 'release/worthwhile-dinosaur'],
         ['blueflag/fronads'],
+        ['allanhortle/covcov'],
         ['blueflag/oose', 'master', 'packages/oose-documentation/docs/moose/moose-introduction.md']
     ];
 
@@ -43,8 +43,8 @@ exports.sourceNodes = async ({actions, createNodeId, createContentDigest}) => {
 
 // Here we're adding extra stuff to the "node" (like the slug)
 // so we can query later for all blogs and get their slug
-exports.onCreateNode = ({ node, actions, getNode }) => {
-    const { createNodeField } = actions
+exports.onCreateNode = ({node, actions, getNode}) => {
+    const { createNodeField } = actions;
     if (node.internal.type === 'Mdx') {
         try {
             const value = createFilePath({node, getNode});
@@ -57,6 +57,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
                 value: `/post${value}`
             });
         } catch(e) {
+            console.error(e);
         }
     }
 }

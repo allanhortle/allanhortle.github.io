@@ -159,6 +159,24 @@ export const Quote = styled.blockquote`
 `;
 
 export const Text = styled.span({}, textStyle, typography, space, colorSystem);
+export const Button = styled.button`
+    ${textStyle}
+    ${typography}
+    ${space}
+    ${colorSystem}
+    -webkit-appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    color: inherit;
+    font: inherit;
+    background-color: ${color('yellow')};
+    color: ${color('bg')};
+    ${p => `padding: 0 ${p.theme.space[1]}px;`}
+    cursor: pointer;
+`;
+
 
 export const Heading = styled(Text)``;
 Heading.defaultProps = {
