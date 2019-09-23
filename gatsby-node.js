@@ -57,7 +57,6 @@ exports.onCreateNode = ({node, actions, getNode}) => {
                 value: `/post${value}`
             });
         } catch(e) {
-            console.error(e);
         }
     }
 }
