@@ -16,7 +16,7 @@ type Props = {
 export default function PostLayout(props: Props): Node {
     const {children} = props;
     const {title} = props.pageContext.frontmatter;
-    return <MainLayout>
+    return <MainLayout {...props}>
         <Heading mb={3}>{title}</Heading>
         {children}
     </MainLayout>;

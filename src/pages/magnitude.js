@@ -5,7 +5,7 @@ import {Heading} from '../components/Affordance';
 
 export default class Magnitude extends React.Component<{}> {
     render() {
-        return <MainLayout>
+        return <MainLayout {...this.props}>
             <Heading>Magnitude</Heading>
             <pre>{`
   x10^...

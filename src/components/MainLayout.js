@@ -23,9 +23,10 @@ import {
 
 type Props = {
     children: any,
-    darkMode: boolean,
-    setDarkMode: Function
+    setDarkMode: Function,
+    darkMode: boolean
 };
+
 export default function MainLayout(props: Props): Node {
     const {children, setDarkMode, darkMode} = props;
     const mdxComponents = {
@@ -116,7 +117,7 @@ function Posts(): Node {
             return <List>
                 {allFile.edges.map(({node}) => {
                     const {frontmatter, fields} = node.childMdx;
-                    return <HeadingItem to={fields.slug} label={frontmatter.date}>{frontmatter.title}</HeadingItem>;
+                    return <HeadingItem key={fields.slug} to={fields.slug} label={frontmatter.date}>{frontmatter.title}</HeadingItem>;
                 })}
             </List>;
         }}

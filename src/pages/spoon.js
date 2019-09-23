@@ -42,7 +42,7 @@ class Spoon extends React.Component<Props, State> {
         });
     }
     render() {
-        return <MainLayout>
+        return <MainLayout {...this.props}>
             <Heading mb={3}>Spoon</Heading>
             <Box >
                 <Label>Input:</Label>

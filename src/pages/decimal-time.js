@@ -39,7 +39,7 @@ class DecimalTime extends React.Component<{}, State> {
     }
 
     render() {
-        return <MainLayout>
+        return <MainLayout {...this.props}>
             <Heading>Decimal Time</Heading>
             <Box p={3}>
                 <Text as="div" textAlign="center">{this.state.time}</Text>
