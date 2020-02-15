@@ -8,16 +8,6 @@ function makeTheme(colors) {
             copy: `'Menlo', 'Inconsolata', monospaced`
         },
         textStyles: {
-            h1: {
-                backgroundColor: colors.yellow,
-                color: colors.bg,
-                fontWeight: 'bold',
-                textAlign: 'center'
-            },
-            h2: {
-                color: colors.yellow,
-                borderBottom: '1px solid'
-            },
             h3: {
                 color: colors.yellow
             },
@@ -40,17 +30,17 @@ function makeTheme(colors) {
 }
 
 export const DarkTheme = makeTheme({
-    bg: '#2f1e2e',
-    fg: '#ddd',
+    bg: '#343d46',
+    fg: '#d8dee9',
     comment: '#6D6D6D',
-    black: '#1e101d',
-    blue: '#06b6ef',
-    green: '#48b685',
-    yellow: '#E1AE69',
-    white: '#e6e6e6',
-    red: '#ef6155',
-    purple: '#815ba4',
-    lineHighlight: 'rgb(30, 47, 39)'
+    black: '#1b1f23',
+    blue: '#6699cc',
+    green: '#99c794',
+    yellow: '#fac863',
+    white: '#fac863',
+    red: '#ec5f67',
+    purple: '#c594c5',
+    lineHighlight: '#2e4e3a'
 });
 
 export const LightTheme = makeTheme({

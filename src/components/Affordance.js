@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled, {createGlobalStyle} from 'styled-components';
-import {space, layout, textStyle, typography, color as colorSystem} from 'styled-system';
+import {space, layout, textStyle, typography, position, color as colorSystem} from 'styled-system';
 import GatsbyLink from 'gatsby-link';
 
 const color = (key) => (props) => props.theme.colors[key];
@@ -59,9 +59,6 @@ export const GlobalStyle = createGlobalStyle`
         font-family: ${_ => _.theme.fonts.copy};
         font-size: 13px;
         line-height: 1.4;
-        padding: .5rem;
-        margin: auto;
-        max-width: 64rem;
     }
 `;
 
@@ -158,7 +155,7 @@ export const Quote = styled.blockquote`
     }
 `;
 
-export const Text = styled.span({}, textStyle, typography, space, colorSystem);
+export const Text = styled.span({}, textStyle, typography, space, layout, position, colorSystem);
 export const Button = styled.button`
     ${textStyle}
     ${typography}
@@ -178,16 +175,26 @@ export const Button = styled.button`
 `;
 
 
-export const Heading = styled(Text)``;
+export const Heading = styled(Text)`
+    padding-left: 0.6rem;
+    z-index: 1;
+    background-color: ${_ => _.theme.colors.yellow};
+    color: ${_  => _.theme.colors.bg};
+    font-weight: 'bold';
+    text-align: 'center';
+`;
 Heading.defaultProps = {
-    as: 'h1',
-    textStyle: 'h1'
+    as: 'h1'
 };
 
-export const SubHeading = styled(Text)``;
+export const SubHeading = styled(Text)`
+    z-index: 1;
+    background-color: ${_ => _.theme.colors.bg};
+    color: ${_ => _.theme.colors.yellow};
+    box-shadow: 0 1px 0 0 ${_ => _.theme.colors.yellow};
+`;
 SubHeading.defaultProps = {
-    as: 'h2',
-    textStyle: 'h2'
+    as: 'h2'
 };
 
 

@@ -3,9 +3,8 @@ import type {Node} from 'react';
 import {StaticQuery, graphql} from 'gatsby';
 import React from "react";
 import {MDXProvider} from "@mdx-js/react"
-import {Box, Flex, Fixed} from './Layout';
+import {Box, Flex} from './Layout';
 import {
-    Button,
     Table,
     TableHeadCell,
     GlobalStyle,
@@ -33,8 +32,8 @@ export default function MainLayout(props: Props): Node {
         a: Link,
         blockquote: Quote,
         em: ({children}) => <Text as="em" textStyle="em" my={3}>{children}</Text>,
-        h1: (props) => <Text as="h1" textStyle="h1" mb={3} {...props} />,
-        h2: (props) => <Text as="h2" textStyle="h2" mt={4} mb={3} {...props} />,
+        h1: (props) => <Heading position="sticky" top={0} as="h1" mb={3} {...props} />,
+        h2: (props) => <SubHeading position="sticky" top="18px" as="h2" mt={4} mb={3} {...props} />,
         h3: (props) => <Text as="h3" textStyle="h3" mt={3} {...props} />,
         img: (props) => <Image maxWidth="100%" {...props} />,
         inlineCode: ({children}) => <Text as="code" textStyle="code" my={3}>{children}</Text>,
@@ -50,31 +49,37 @@ export default function MainLayout(props: Props): Node {
     };
 
     return <MDXProvider components={mdxComponents}>
-        <Fixed top={2} left={2}>
-            <Button onClick={() => setDarkMode(!darkMode)}>{darkMode ? 'light' : 'dark'}</Button>
-        </Fixed>
-        <Flex display={['block', null, 'flex']} alignItems="start" pb={6}>
+        <Flex display={['block', null, 'flex']} height="100vh" ml={2} mr={2} pt={2}>
             <GlobalStyle />
-            <Box width={[1, null, .6]} mr={[null, null, 3]} mb={3} flexShrink={0}>{children}</Box>
-            <Box width={[1, null, .4]}><Sidebar/></Box>
+            <Box flex="0 0 auto" mb={3} mr={[null, null, 3]}><Sidebar/></Box>
+            <Box flex="0 1 auto" width="50rem" overflow="auto" pb={7}>{children}</Box>
         </Flex>
     </MDXProvider>;
 }
 
 function Sidebar(): Node {
     return <>
-        <Heading mb={3}>Allan Hortle</Heading>
+        <Heading mb={3} pl={3} textAlign="left">Allan Hortle</Heading>
         <List>
             <HeadingItem to="/spoon">Spoon</HeadingItem>
             <HeadingItem to="/decimal-time">Decimal Time</HeadingItem>
             <HeadingItem to="/magnitude">Magnitude</HeadingItem>
+            <HeadingItem href="https://bible.allanhortle.com">Bible Word Stats</HeadingItem>
+            <HeadingItem href="https://boardgameonepagers.com">Board Game One Pagers</HeadingItem>
         </List>
 
         <SubHeading my={3}>Repos</SubHeading>
         <List>
             <HeadingItem to="/repo/enty" label="Normalized state management">Enty</HeadingItem>
+            <HeadingItem to="/repo/pnut" label="Flexible React Charting">Pnut</HeadingItem>
+            <HeadingItem to="/repo/stringdate" label="Only Dates; only strings">Stringdate</HeadingItem>
+            <HeadingItem to="/repo/jsx" label="Sublime Text - Syntax">JSX</HeadingItem>
+            <HeadingItem to="/repo/centurion" label="Submite Text - Theme">Centurion</HeadingItem>
+            <HeadingItem to="/repo/puffin" label="Dotfiles">Puffin</HeadingItem>
             <HeadingItem to="/repo/covcov" label="A TUI for coverage reports">covcov</HeadingItem>
-            <HeadingItem to="/repo/fronads" label="Monads with beginner-friendly naming">Fronads</HeadingItem>
+            <HeadingItem to="/repo/hubgit" label="A TUI for github">hubgit</HeadingItem>
+            <HeadingItem to="/repo/pipwerks-scorm-api" label="An wrapper for scorm">scorm-api-wrapper</HeadingItem>
+            <HeadingItem to="/repo/fronads" label="beginner-friendly monads">Fronads</HeadingItem>
             <HeadingItem to="/repo/moose" label="Front-end Methodology">Moose</HeadingItem>
         </List>
         <SubHeading my={3}>Posts</SubHeading>

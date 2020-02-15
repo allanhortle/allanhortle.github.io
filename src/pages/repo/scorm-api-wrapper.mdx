@@ -2,16 +2,16 @@ import MainLayout from '../../components/MainLayout';
 import {graphql} from 'gatsby';
 import {MDXRenderer} from 'gatsby-plugin-mdx';
 
+<div>{console.log(MainLayout)}</div>
+
 <MDXRenderer>{props.data.readme.childMdx.body}</MDXRenderer>
 
 export const pageQuery = graphql`
 query {
-    readme(path:{eq:"/allanhortle/covcov/master/README.md"}) {
+    readme(path:{eq:"/allanhortle/pipwerks-scorm-api-wrapper/master/README.md"}) {
         childMdx {body}
     }
 }
 `;
 
-export default MainLayout;
-export const title = 'covcov';
-
+//export default MainLayout;

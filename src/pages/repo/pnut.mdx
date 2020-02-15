@@ -6,12 +6,11 @@ import {MDXRenderer} from 'gatsby-plugin-mdx';
 
 export const pageQuery = graphql`
 query {
-    readme(path:{eq:"/allanhortle/covcov/master/README.md"}) {
+    readme(path:{eq:"/bigdatr/pnut/master/README.md"}) {
         childMdx {body}
     }
 }
 `;
 
 export default MainLayout;
-export const title = 'covcov';
 

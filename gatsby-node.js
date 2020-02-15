@@ -6,7 +6,14 @@ exports.sourceNodes = async ({actions, createNodeId, createContentDigest}) => {
     const repos = [
         ['blueflag/enty', 'release/worthwhile-dinosaur'],
         ['blueflag/fronads'],
+        ['bigdatr/pnut'],
         ['allanhortle/covcov'],
+        ['allanhortle/JSX'],
+        ['allanhortle/Centurion'],
+        ['allanhortle/Puffin'],
+        ['allanhortle/hubgit'],
+        ['allanhortle/pipwerks-scorm-api-wrapper'],
+        ['92green/stringdate'],
         ['blueflag/oose', 'master', 'packages/oose-documentation/docs/moose/moose-introduction.md']
     ];
 
