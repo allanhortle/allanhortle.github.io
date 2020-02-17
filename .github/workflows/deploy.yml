@@ -28,7 +28,7 @@ jobs:
             aws-region: ap-southeast-2
 
       - name: Deploy to S3
-        run: aws s3 cp ./public s3://allanhortle.com --recursive
+        run: aws s3 cp ./public s3://allanhortle.com --recursive --acl public-read
 
       - name: Invalidate Cloudfront
         run: aws cloudfront create-invalidation --distribution-id=E3F0IQ213WHIFJ --paths '/*'
