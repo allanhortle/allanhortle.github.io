@@ -20,25 +20,15 @@ jobs:
       - name: Build Package
         run: yarn build
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@master
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          name: public
-          path: public
+            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+            aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+            aws-region: ap-southeast-2
 
       - name: Deploy to S3
-        uses: actions/aws/cli@master
-        with:
-          args: s3 cp ./public s3://allanhortle.com --recursive
-        env:
-          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        run: s3 cp ./public s3://allanhortle.com --recursive
 
-      - name: Invalidate Cloudfront CDN
-        uses: actions/aws/cli@master
-        with:
-          args: cloudfront create-invalidation --distribution-id=$CLOUDFRONT_DISTRIBUTION_ID --paths '/*'
-        env:
-          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          CLOUDFRONT_DISTRIBUTION_ID: E3F0IQ213WHIFJ
+      - name: Invalidate Cloudfront
+        run: cloudfront create-invalidation --distribution-id=E3F0IQ213WHIFJ --paths '/*'
