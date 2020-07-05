@@ -31,4 +31,4 @@ jobs:
         run: aws s3 cp ./public s3://allanhortle.com --recursive --acl public-read
 
       - name: Invalidate Cloudfront
-        run: aws cloudfront create-invalidation --distribution-id=E3F0IQ213WHIFJ --paths '/*'
+        run: aws cloudfront create-invalidation --distribution-id=EYYB2NLFZKE3R --paths '/*'
