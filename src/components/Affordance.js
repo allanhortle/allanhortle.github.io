@@ -89,6 +89,13 @@ export const ListItem = styled.li`
 
 
 export const Link = styled((props) => props.href ? <a {...props} /> : <GatsbyLink {...props} />)`
+    &.active {
+        text-decoration: none;
+        font-weight: bold;
+        color: white !important;
+        &:before {content: '# '}
+    }
+    ${_ => console.log(_)}
     color: ${_ => _.theme.colors.blue};
     &:visited {
         color: ${_ => _.theme.colors.blue};
@@ -209,7 +216,12 @@ export const Table = styled.table`
 `;
 
 export const TableHeadCell = styled.th`
-    border-bottom: 1px solid;
-    text-align: left;
+    border: 1px solid;
+    padding: .5rem;
     font-weight: bold;
+`;
+
+export const TableCell = styled.th`
+    border: 1px solid;
+    padding: .5rem;
 `;

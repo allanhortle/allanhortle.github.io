@@ -1,0 +1,52 @@
+
+## Enty
+
+[Github](https://github.com/92green/stringdate)
+[Docs](https://92green.github.io/enty/)
+
+A normalized cache for front-ends designed to synchronized local state with an external source.
+
+* It's declarative. (Designed for hooks)
+* It keeps your data up to date.
+* It's low boiler plate.
+* It works with promises, async generators and observables.
+
+## String Date
+
+[Github](https://github.com/92green/stringdate)
+
+Do you find that most of the time dates and times are strings? You receive them through JSON as a string and you render them to the user as a string. If you are already using libraries to manipulate and format them, why bother dealing with the rubbish JavaScript Date object. Just use strings everywhere.
+
+```js
+import {add, format} from 'stringdate';
+import {pipeWith} from 'unfunctional';
+
+const tomorrow = pipeWith(
+    '2020-01-01',
+    add('P1D'),
+    format('EEEE MMMM do yyyy')
+);
+
+// tomorrow === 'Thursday January 2nd 2020';
+```
+
+## covcov
+[Github](https://github.com/allanhortle/covcov)
+
+_A terminal UI for coverage reports._
+
+
+Covcov recursively searches your working directory for Istanbul coverage reports and displays them all in one location.
+
+
+## JSX
+[Github](https://github.com/allanhortle/JSX)
+[Package Control](https://packagecontrol.io/packages/JSX)
+
+Sublime language definitions for JSX files.
+
+## fronads
+
+[Github](https://github.com/92green/fronads)
+
+Frontend monads with consistent and beginner-friendly naming conventions.
