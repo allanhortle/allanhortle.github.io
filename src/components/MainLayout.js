@@ -65,7 +65,7 @@ function Sidebar(): Node {
         <Flex justifyContent="center" mb="3">
             <Box mx="2"><Link activeClassName="active" to="/projects">Projects</Link></Box>
             <Box mx="2"><Link activeClassName="active" to="/notes">Notes</Link></Box>
-            <Box mx="2"><Link activeClassName="active" to="/menu">Food</Link></Box>
+            <Box mx="2"><Link activeClassName="active" to="/food">Food</Link></Box>
         </Flex>
     </>;
 }

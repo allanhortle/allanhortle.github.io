@@ -90,10 +90,8 @@ export const ListItem = styled.li`
 
 export const Link = styled((props) => props.href ? <a {...props} /> : <GatsbyLink {...props} />)`
     &.active {
-        text-decoration: none;
         font-weight: bold;
         color: white !important;
-        &:before {content: '# '}
     }
     ${_ => console.log(_)}
     color: ${_ => _.theme.colors.blue};
